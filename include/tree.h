@@ -1,9 +1,9 @@
-// Copyright 2021 NNTU-CS
+// Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TREE_H_
 #define INCLUDE_TREE_H_
 
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 struct Node {
   char value;
@@ -36,7 +36,8 @@ class PMTree {
   }
 
  public:
-  explicit PMTree(const std::vector<char>& in) : sz(static_cast<int>(in.size())) {
+  explicit PMTree(const std::vector<char>& in)
+      : sz(static_cast<int>(in.size())) {
     root = new Node('\0');
     build(root, in);
   }
