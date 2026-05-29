@@ -1,8 +1,10 @@
-// Copyright 2022 NNTU-CS
+// Copyright 2022 NNTR-CS
 #include  <iostream>
 #include  <fstream>
 #include  <locale>
 #include  <cstdlib>
+#include  <cstdint>
+#include  <vector>
 #include  "tree.h"
 
 static void dfs(Node* node, std::vector<char>& path,
@@ -21,8 +23,8 @@ static void dfs(Node* node, std::vector<char>& path,
     path.pop_back();
 }
 
-static long long factorial(int n) {
-  long long f = 1;
+static int64_t factorial(int n) {
+  int64_t f = 1;
   for (int i = 2; i <= n; i++) f *= i;
   return f;
 }
@@ -45,15 +47,15 @@ std::vector<char> getPerm2(PMTree& tree, int num) {
   if (num < 1) return {};
 
   int n = tree.getSize();
-  long long total = factorial(n);
+  int64_t total = factorial(n);
   if (num > total) return {};
 
   std::vector<char> result;
   Node* node = tree.getRoot();
-  long long idx = num - 1;
+  int64_t idx = num - 1;
 
   for (int depth = 0; depth < n; depth++) {
-    long long blockSize = factorial(n - depth - 1);
+    int64_t blockSize = factorial(n - depth - 1);
     int childIdx = static_cast<int>(idx / blockSize);
     idx %= blockSize;
     node = node->children[childIdx];
