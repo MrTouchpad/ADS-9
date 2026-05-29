@@ -4,6 +4,7 @@
 #include <vector>
 #include <chrono>
 #include <cstdlib>
+#include <cstdint>
 #include <string>
 #include "tree.h"
 
@@ -37,8 +38,8 @@ static double measureGetPerm2(int n, int num) {
   return std::chrono::duration<double, std::micro>(t1 - t0).count();
 }
 
-static long long factorial(int n) {
-  long long f = 1;
+static int64_t factorial(int n) {
+  int64_t f = 1;
   for (int i = 2; i <= n; i++) f *= i;
   return f;
 }
@@ -66,7 +67,7 @@ int main() {
   std::cout << "\nn\tgetAllPerms(us)\tgetPerm1(us)\tgetPerm2(us)\n";
 
   for (int n = 2; n <= 9; n++) {
-    long long total = factorial(n);
+    int64_t total = factorial(n);
     int num = static_cast<int>(1 + std::rand() % total);
 
     double tAll = measureAllPerms(n);
